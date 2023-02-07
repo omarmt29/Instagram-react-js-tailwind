@@ -14,7 +14,7 @@ export const Feed = () => {
 
             <div className='col-span-3 md:col-span-2'>
 
-                <StoryCard className='fixed top-0' />
+                <StoryCard />
 
 
                 {/* Post card */}
@@ -22,21 +22,21 @@ export const Feed = () => {
                 <div className='overflow-y-auto scrollbar  scrollbar-thumb-slate-400 scrollbar-medium h-screen mt-5'>
 
                     <div>
-                        <div className='bg-white flex items-center justify-between p-5'>
+                        <div className='bg-white flex items-center justify-between p-5 rounded-t-xl'>
                             <Miniprofile w='10' h='10' name="Rodolfo Corripio" image="https://picsum.photos/id/237/200/300" />
                             <AiOutlineMore className='rotate-90 text-2xl' />
                         </div>
-                        <div className='w-full h-4/6'>
-                            <img className='w-full h-full object-cover' src="https://cdn.akamai.steamstatic.com/steam/apps/1462570/ss_ac25277f95e6dde71a5ddafd933edbd78f0b409c.1920x1080.jpg?t=1662047426" alt="" />
+                        <div className='w-full h-4/6 '>
+                            <img className='w-full h-full object-cover rounded-b-xl' src="https://cdn.akamai.steamstatic.com/steam/apps/1462570/ss_ac25277f95e6dde71a5ddafd933edbd78f0b409c.1920x1080.jpg?t=1662047426" alt="" />
                         </div>
                     </div>
                     <div>
-                        <div className='bg-white mt-5 flex items-center justify-between p-5'>
+                        <div className='bg-white mt-5 flex items-center justify-between p-5 rounded-t-xl'>
                             <Miniprofile w='10' h='10' name="Rodolfo Corripio" image="https://picsum.photos/id/237/200/300" />
                             <AiOutlineMore className='rotate-90 text-2xl' />
                         </div>
                         <div className='w-full h-4/6'>
-                            <img className='w-full h-full object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3lQUKAxE6MnvAcuo4S9bTqv3w4AG80rwlgORkJRQ7zz-MkJNx6QRvO5xbPvLaX8oDPxI&usqp=CAU" alt="" />
+                            <img className='w-full h-full object-cover rounded-b-xl' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3lQUKAxE6MnvAcuo4S9bTqv3w4AG80rwlgORkJRQ7zz-MkJNx6QRvO5xbPvLaX8oDPxI&usqp=CAU" alt="" />
                         </div>
                     </div>
 
@@ -56,7 +56,7 @@ export const Feed = () => {
 
                 {/* miniprofile */}
 
-                <Miniprofile  name="Maria_burguer89" subname="Maria_burguer89" image="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHw%3D&w=1000&q=80" />
+                <Miniprofile  className='h-20' name="Maria_burguer89" subname="Maria_burguer89" image="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHw%3D&w=1000&q=80" />
 
                 {/* suggestions */}
                 <div className='flex flex-col gap-5'>
