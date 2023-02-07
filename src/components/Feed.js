@@ -35,7 +35,7 @@ export const Feed = () => {
 
                 {/* Post card */}
 
-                <div className='overflow-y-auto scrollbar flex flex-col flex-col-reverse  scrollbar-thumb-slate-400 scrollbar-medium h-screen mt-5'>
+                <div className='overflow-y-auto scrollbar flex flex-col-reverse	scroll-snap-align: end; scrollbar-thumb-slate-400 scrollbar-medium h-screen mt-5'>
 
 
 
