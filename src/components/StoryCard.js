@@ -20,7 +20,7 @@ export const StoryCard = () => {
     }, [])
 
     return (
-        <div className='bg-white p-4 border rounded-xl border-gray-300 flex space-x-3 overflow-x-auto scrollbar scrollbar-thumb-slate-400  scrollbar-medium'>
+        <div className='bg-white p-4 pt-6 sm:pt-4 border rounded-xl border-gray-300 flex space-x-3 overflow-x-auto scrollbar scrollbar-thumb-slate-400  scrollbar-medium'>
             {data.map((e, index) => <StoryItem key={index} name={e.name.first} lastname={e.name.last} picture={e.picture.large} />)}
 
         </div>

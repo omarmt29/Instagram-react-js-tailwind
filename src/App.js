@@ -9,9 +9,19 @@ function App() {
   return (
     <div className=" bg-slate-100 h-full">
 
-      <Header />
+      <div className="fixed top-0 w-full z-10">
 
-      <Feed />
+        <Header />
+
+      </div>
+
+      <div className="pt-20">
+
+        <Feed />
+      
+      </div>
+
+
 
 
 

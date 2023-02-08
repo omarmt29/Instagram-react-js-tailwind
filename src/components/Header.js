@@ -8,16 +8,51 @@ import { Dialog, Transition } from '@headlessui/react'
 export default function Header() {
 
     const [open, setOpen] = useState(false)
-    const [post, setposts ] = useState({ name:'', image:'', message:'' })
+    const [post, setposts ] = useState({ name:'', image:'', message:'', image: '' })
     const cancelButtonRef = useRef(null)
 
  
-    const handlerInsert = async () => {
+    const handlerInsert = async (e) => {
 
-        const { error } = await supabase
-        .from('posts')
-        .insert({ name: post.name, image: post.image, message:post.message })
-        console.log(error)
+     
+        
+        const file = e.target.files[0]
+
+        const { data, error } = await supabase
+            .storage
+            .from('image-post')
+            .upload(`public/${post.name}`, file)
+
+            if(data){
+                getimages()
+            }else{
+                console.log(error);
+            }
+        
+                
+        function getimages(){
+            const imageurl = supabase.storage.from('image-post').getPublicUrl(`${post.name}`, {
+                transform: {
+                  width: 500,
+                  height: 600,
+                  format: 'origin'
+                },
+            })
+
+            console.log(imageurl.data.publicUrl)
+        }
+
+       
+
+
+        // const { data, error } = await supabase
+        // .from('posts')
+        // .insert({ name: post.name, image: imageurl, message:post.message })
+
+
+
+
+ 
 
     }
 
@@ -25,7 +60,7 @@ export default function Header() {
  
 
     return (
-        <div className=' bg-white border border-2 border-gray-200'>
+        <div className=' bg-white  border-2 border-gray-200'>
             <div className='max-w-7xl mx-auto py-2 flex items-center justify-between px-5 '>
              
                 {/* Logo*/}
@@ -69,7 +104,7 @@ export default function Header() {
                     </Transition.Child>
 
                     <div className="fixed inset-0 z-10 overflow-y-auto">
-                        <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <div className="flex  justify-center p-4 text-center sm:items-center sm:p-0">
                             <Transition.Child
                                 as={Fragment}
                                 enter="ease-out duration-300"
@@ -87,7 +122,8 @@ export default function Header() {
                                                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                                                    <h2 className='mb-12 font-bold text-xl'>Agregar nuevo post</h2>
                                                 </Dialog.Title>
-                                                <input type="text" placeholder='Image url' onChange={e => setposts({...post, image:e.target.value})} className='p-2 outline-none border-b-4 w-full mb-3'/>
+                                                <h5 className='text-start text-gray-500'>Select Image</h5>
+                                                <input type="file" placeholder='Image url' onChange={e => handlerInsert(e)} className='p-2 outline-none border-b-4 w-full mb-3 bg-transparent'/>
                                                 <input type="text" placeholder='Nombre' onChange={e => setposts({...post, name:e.target.value})} className='p-2 outline-none border-b-4 w-full mb-3'/>
                                                 <input type="text" placeholder='Mensaje'  onChange={e => setposts({...post, message:e.target.value})} className='p-2 outline-none border-b-4 w-full mb-3'/>
                                                 <div className="mt-8 mb-6">
