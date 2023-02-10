@@ -1,5 +1,5 @@
 import { supabase } from '../api/cliente'
-import { AiOutlineSearch, AiFillHome, AiOutlineSend, AiOutlinePlusCircle, AiOutlineHeart, AiOutlineMenu, AiOutlineWarning } from "react-icons/ai";
+import { AiOutlineSearch, AiFillHome, AiOutlineSend, AiOutlinePlusCircle, AiOutlineHeart, AiOutlineWarning } from "react-icons/ai";
 import { Fragment, useRef, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
@@ -8,55 +8,59 @@ import { Dialog, Transition } from '@headlessui/react'
 export default function Header() {
 
     const [open, setOpen] = useState(false)
-    const [post, setposts ] = useState({ name:'', image:'', message:'', image: '' })
+    const [post, setposts] = useState({ name:'', message:'', images:'', })
     const cancelButtonRef = useRef(null)
 
- 
     const handlerInsert = async (e) => {
 
-     
-        
         const file = e.target.files[0]
+       const randomstring = Math.random().toString(36).slice(-8);
 
         const { data, error } = await supabase
             .storage
             .from('image-post')
-            .upload(`public/${post.name}`, file)
+            .upload(`public/${randomstring}`, file)
 
             if(data){
-                getimages()
+
+                const InserData = async () =>{
+
+                    const  imageurl  =  await supabase
+                    .storage
+                    .from('image-post')
+                    .getPublicUrl('public/'+randomstring)
+        
+                    const { error } = await supabase
+                    .from('posts')
+                    .insert({ name: post.name, message: post.message, image: imageurl.data.publicUrl})
+                    console.log("log del inserdata")
+                    console.log(post)
+                    if(error){
+                        console.log('error a insertar la data en la tabla')
+                        console.log(error)
+                    }else{
+                    
+                    }
+                }
+              
+
+                InserData()
             }else{
+                console.log('error al guardar imagen')
                 console.log(error);
             }
+
+
+           
+
+         
         
-                
-        function getimages(){
-            const imageurl = supabase.storage.from('image-post').getPublicUrl(`${post.name}`, {
-                transform: {
-                  width: 500,
-                  height: 600,
-                  format: 'origin'
-                },
-            })
-
-            console.log(imageurl.data.publicUrl)
-        }
-
-       
-
-
-        // const { data, error } = await supabase
-        // .from('posts')
-        // .insert({ name: post.name, image: imageurl, message:post.message })
-
-
-
-
- 
 
     }
 
- 
+
+
+
  
 
     return (
@@ -119,13 +123,13 @@ export default function Header() {
                                         <div className="sm:flex sm:items-start">
                                          
                                             <div className="mt-3 text-center">
-                                                <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+                                                <Dialog.Title  className="text-lg font-medium leading-6 text-gray-900">
                                                    <h2 className='mb-12 font-bold text-xl'>Agregar nuevo post</h2>
                                                 </Dialog.Title>
-                                                <h5 className='text-start text-gray-500'>Select Image</h5>
-                                                <input type="file" placeholder='Image url' onChange={e => handlerInsert(e)} className='p-2 outline-none border-b-4 w-full mb-3 bg-transparent'/>
+                                                
                                                 <input type="text" placeholder='Nombre' onChange={e => setposts({...post, name:e.target.value})} className='p-2 outline-none border-b-4 w-full mb-3'/>
                                                 <input type="text" placeholder='Mensaje'  onChange={e => setposts({...post, message:e.target.value})} className='p-2 outline-none border-b-4 w-full mb-3'/>
+                                                <input type="file" placeholder='Image url' onChange={e => handlerInsert(e)} className='p-2 outline-none border-b-4 w-full mb-3 bg-transparent'/>
                                                 <div className="mt-8 mb-6">
                                                     <AiOutlineWarning className='text-2xl text-yellow-600 m-auto mb-5'/>
                                                     <p className="text-sm text-gray-500 text-center">
@@ -148,7 +152,7 @@ export default function Header() {
                                         <button
                                             type="button"
                                             className=" outline-none border bg-green-400 border-green-300 p-2 px-4 rounded-lg hover:bg-green-400"
-                                            onClick={() => setOpen(false) + handlerInsert()}
+                                            onClick={() => setOpen(false)}
                                          
 
                                         
