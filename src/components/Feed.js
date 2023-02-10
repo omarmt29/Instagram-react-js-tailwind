@@ -28,7 +28,7 @@ export const Feed = () => {
 
             <div className='col-span-3 md:col-span-2 '>
 
-                <div className=' w-full fixed sm:relative top-16 sm:top-0 '>
+                <div className=' w-full sm:relative  sm:top-0 '>
 
                     <StoryCard />
                 </div>
@@ -36,22 +36,22 @@ export const Feed = () => {
 
                 {/* Post card */}
 
-                <div className='overflow-y-auto snap-y scrollbar flex flex-col-reverse	scroll-snap-align: end; scrollbar-thumb-slate-400 scrollbar-medium mt-32 sm:mt-5'>
+                <div className='overflow-y-auto snap-y scrollbar flex flex-col-reverse	scroll-snap-align: end; scrollbar-thumb-slate-400 scrollbar-medium mt-5 sm:mt-5'>
 
 
 
                     {data.map((e, i) =>
                         <div key={i} className='mb-5 snap-center '>
-                            <div className='bg-white flex items-center justify-between p-5 rounded-t-xl'>
+                            <div className='bg-white dark:bg-slate-700 dark:text-white flex items-center justify-between p-5 sm:rounded-t-xl'>
                                 <Miniprofile w='10' h='10' name={e.name} image={e.image} />
                                 <AiOutlineMore className='rotate-90 text-2xl' />
                             </div>
                             <div className='aspect-video object-cover'>
                                 <img className='w-full ' key={e.image } src={e.image} alt="" />
                             </div>
-                            <div className='bg-white w-100 p-4 rounded-b-xl flex items-center gap-1'>
-                                <p className='font-medium'>Message:</p>
-                                <p className='text-xs text-gray-600'>{e.message}</p>
+                            <div className='bg-white dark:bg-slate-700  w-100 p-4 sm:rounded-b-xl flex items-center gap-1'>
+                                <p className='font-medium dark:text-white'>Message:</p>
+                                <p className='text-xs text-gray-600 dark:text-slate-300'>{e.message}</p>
                             </div>
                         </div>
                     )}
@@ -80,8 +80,8 @@ export const Feed = () => {
                 {/* suggestions */}
                 <div className='flex flex-col gap-5'>
                     <div className='flex justify-between mt-4'>
-                        <p className='text-xl text-gray-400 font-semibold'>Suggestions for you</p>
-                        <p className='text-md text-gray-700 font-bold'>See All</p>
+                        <p className='text-xl text-gray-400 dark:text-white font-semibold'>Suggestions for you</p>
+                        <p className='text-md text-gray-700 dark:text-slate-400 font-bold'>See All</p>
                     </div>
                     <div className='flex flex-col gap-5'>
                         <Miniprofile w='10' h='10' name="Rodolfo Corripio" subname="Maria_burguer89" image="https://picsum.photos/id/237/200/300" />

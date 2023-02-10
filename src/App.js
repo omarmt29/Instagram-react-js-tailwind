@@ -7,7 +7,7 @@ import Header from "./components/Header";
 function App() {
 
   return (
-    <div className=" bg-slate-100 h-full">
+    <div className=" bg-slate-100 dark:bg-slate-900 h-full">
 
       <div className="fixed top-0 w-full z-10">
 
@@ -15,7 +15,7 @@ function App() {
 
       </div>
 
-      <div className="pt-20">
+      <div className="pt-16">
 
         <Feed />
       
