@@ -5,6 +5,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { FaMoon, FaRegMoon } from "react-icons/fa";
 
 
+
 export default function Header() {
 
     const [darkmode, setdarkmode] = useState(true);
@@ -53,7 +54,7 @@ export default function Header() {
 
                 }
             }
-
+            console.log(post)
 
             InserData()
 
@@ -68,8 +69,8 @@ export default function Header() {
 
 
     return (
-        <div className=' bg-white dark:bg-slate-800 transition-all dark:border-none  border-2 border-gray-200'>
-            <div className='max-w-7xl mx-auto py-2 flex items-center justify-between px-5 '>
+        <div className=' bg-white dark:bg-black transition-all dark:border-none  border-2 border-gray-200'>
+            <div className='max-w-7xl mx-auto sm:py-2 flex items-center justify-between px-5 '>
 
                 {/* Logo*/}
                 
@@ -81,7 +82,7 @@ export default function Header() {
                 {/* search bar*/}
                 <div className="relative  items-center hidden sm:flex">
                     <div className='absolute pl-3'><AiOutlineSearch className='text-gray-400 text-lg' /></div>
-                    <input className='border-md  dark:bg-slate-800 dark:text-white   dark:border-slate-500 border h-11 pl-9 rounded-md sm:w-80 w-13 bg-slate-50' type="text" placeholder='Search' />
+                    <input className='border-md  dark:bg-black dark:text-white   dark:border-slate-800 border h-11 pl-9 rounded-md sm:w-80 w-13 bg-slate-50' type="text" placeholder='Search' />
                 </div>
 
                 {/* Menu*/}
@@ -94,6 +95,7 @@ export default function Header() {
 
                         {darkmode ? <FaRegMoon onClick={handlerDark} className=' text-2xl hover:scale-125 hover:cursor-pointer transition-all  sm:block' /> : <FaMoon onClick={handlerDark} className=' text-2xl text-white hover:scale-125 hover:cursor-pointer transition-all  sm:block' />}
                         <img className='hidden w-10 h-10 object-cover rounded-full hover:scale-125 hover:cursor-pointer transition-all' src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="" />
+                        
 
                     </div>
 

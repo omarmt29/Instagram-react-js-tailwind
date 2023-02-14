@@ -42,14 +42,14 @@ export const Feed = () => {
 
                     {data.map((e, i) =>
                         <div key={i} className='mb-5 snap-center '>
-                            <div className='bg-white dark:bg-slate-900 dark:text-white border-t-2 dark:border-slate-600 flex items-center justify-between p-5 sm:rounded-t-xl'>
+                            <div className='bg-white dark:bg-black dark:text-white border-t-2 dark:border-slate-800 flex items-center justify-between p-5 sm:rounded-t-xl'>
                                 <Miniprofile w='10' h='10' name={e.name} image={e.image} />
                                 <AiOutlineMore className='rotate-90 text-2xl' />
                             </div>
-                            <div className='aspect-video object-cover'>
-                                <img className='w-full ' key={e.image } src={e.image} alt="" />
-                            </div>
-                            <div className='bg-white dark:bg-slate-900 dark:border-slate-600 border-b-2 w-100 p-4 sm:rounded-b-xl flex items-center gap-1'>
+                           
+                            <img className='w-full h-[600px] object-cover' key={e.image } src={e.image} alt="" />
+                     
+                            <div className='bg-white dark:bg-black dark:border-slate-800 border-b-2 w-100 p-4 sm:rounded-b-xl flex items-center gap-1'>
                                 <p className='font-medium dark:text-white'>Message:</p>
                                 <p className='text-xs text-gray-600 dark:text-slate-300'>{e.message}</p>
                             </div>
@@ -61,12 +61,7 @@ export const Feed = () => {
 
                 </div>
 
-
-
-
-
             </div>
-
 
 
             {/* Right side*/}
