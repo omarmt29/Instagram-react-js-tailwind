@@ -1,16 +1,17 @@
 import { supabase } from '../api/cliente'
-import { AiOutlineSearch, AiFillHome, AiOutlineSend, AiOutlinePlusCircle, AiOutlineHeart, AiOutlineWarning } from "react-icons/ai";
-import { Fragment, useRef, useState } from 'react'
+import { AiOutlineSearch, AiFillHome, AiOutlineSend, AiOutlinePlusCircle, AiOutlineWarning, AiOutlineUserAdd, AiOutlineImport } from "react-icons/ai";
+import { Fragment, useRef, useState,} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { FaMoon, FaRegMoon } from "react-icons/fa";
-
-
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
 
     const [darkmode, setdarkmode] = useState(true);
     const [open, setOpen] = useState(false)
     const [post, setposts] = useState({ name: '', message: '', images: '', })
+    const navigate = useNavigate()
     const cancelButtonRef = useRef(null)
 
     const handlerDark = () => {
@@ -23,6 +24,12 @@ export default function Header() {
         }
     }
 
+  
+    const handlerLogout = () => {
+        supabase.auth.signOut()
+        navigate('/login')
+    }
+  
     const handlerInsert = async (e) => {
 
         const file = e.target.files[0]
@@ -73,11 +80,11 @@ export default function Header() {
             <div className='max-w-7xl mx-auto sm:py-2 flex items-center justify-between px-5 '>
 
                 {/* Logo*/}
-                
-                {darkmode ? <img className='w-28 hidden sm:block' src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png" alt="profile pic"/> : <img className='w-28 hidden sm:block' src="https://www.shawspaving.co.uk/wp-content/uploads/2019/01/instagram-font-logo-white-png.png" alt="profile pic" /> }
-                
-                {darkmode ? <img className='w-7 sm:hidden' src="https://cdn-icons-png.flaticon.com/512/87/87390.png" alt="profile pic" /> :  <img className='w-7 sm:hidden' src="https://icon-library.com/images/instagram-icon-png-white/instagram-icon-png-white-11.jpg" alt="profile pic" /> }
-             
+
+                {darkmode ? <Link to="/" className='hidden sm:block'>  <img className='w-28 hidden sm:block' src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png" alt="profile pic" /> </Link> : <Link to="/" className='hidden sm:block'>   <img className='w-28 hidden sm:block' src="https://www.shawspaving.co.uk/wp-content/uploads/2019/01/instagram-font-logo-white-png.png" alt="profile pic" />  </Link>}
+
+                {darkmode ? <Link to="/" className='sm:hidden'>   <img className='w-7 sm:hidden' src="https://cdn-icons-png.flaticon.com/512/87/87390.png" alt="profile pic" /> </Link> : <Link to="/" className=' sm:hidden'>   <img className='w-7 sm:hidden' src="https://icon-library.com/images/instagram-icon-png-white/instagram-icon-png-white-11.jpg" alt="profile pic" /> </Link>}
+
 
                 {/* search bar*/}
                 <div className="relative  items-center hidden sm:flex">
@@ -88,14 +95,16 @@ export default function Header() {
                 {/* Menu*/}
                 <div className='flex items-center space-x-5'>
                     <div className='h-14 flex sm:flex space-x-5 items-center'>
-                        <AiFillHome className='dark:text-white hidden text-2xl hover:scale-125 hover:cursor-pointer transition-all sm:block ' />
+                        <Link to="/"> <AiFillHome className='dark:text-white hidden text-2xl hover:scale-125 hover:cursor-pointer transition-all sm:block ' /></Link>
                         <AiOutlineSend className=' dark:text-white hidden text-2xl hover:scale-125 hover:cursor-pointer transition-all -rotate-45  sm:block' />
                         <AiOutlinePlusCircle onClick={() => setOpen(!false)} className='dark:text-white text-2xl hover:scale-125 hover:cursor-pointer transition-all' />
-                        <AiOutlineHeart className='dark:text-white hidden text-2xl hover:scale-125 hover:cursor-pointer transition-all  sm:block' />
 
+                        <Link to="/login"><AiOutlineUserAdd className='dark:text-white text-2xl hover:scale-125 hover:cursor-pointer transition-all  sm:block' /> </Link>
+                        <AiOutlineImport onClick={handlerLogout} className='dark:text-white text-2xl hover:scale-125 hover:cursor-pointer transition-all  sm:block' /> 
+                        
                         {darkmode ? <FaRegMoon onClick={handlerDark} className=' text-2xl hover:scale-125 hover:cursor-pointer transition-all  sm:block' /> : <FaMoon onClick={handlerDark} className=' text-2xl text-white hover:scale-125 hover:cursor-pointer transition-all  sm:block' />}
                         <img className='hidden w-10 h-10 object-cover rounded-full hover:scale-125 hover:cursor-pointer transition-all' src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="" />
-                        
+
 
                     </div>
 
